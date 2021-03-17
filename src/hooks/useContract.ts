@@ -1,8 +1,10 @@
 import { Contract } from '@ethersproject/contracts'
+// Change address Governance and Token ABI deployed on ropstein below[ experimentation use (ropstein-dummy-governance folder)]
 import { abi as GOVERNANCE_ABI } from '@uniswap/governance/build/GovernorAlpha.json'
 import { abi as UNI_ABI } from '@uniswap/governance/build/Uni.json'
 import { ChainId } from '@uniswap/sdk'
 import { useMemo } from 'react'
+// Change address Governance and Token addresses deployed on ropstein below[ experimentation use (ropstein-dummy-governance folder)]
 import { GOVERNANCE_ADDRESS, UNI } from '../constants'
 import {
   ARGENT_WALLET_DETECTOR_ABI,

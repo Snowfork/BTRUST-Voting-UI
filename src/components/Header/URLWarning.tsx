@@ -14,7 +14,7 @@ const PhishAlert = styled.div<{ isActive: any }>`
   align-items: center;
   display: ${({ isActive }) => (isActive ? 'flex' : 'none')};
 `
-*/AnimationEffect
+*/ AnimationEffect
 
 export const StyledClose = styled(X)`
   :hover {

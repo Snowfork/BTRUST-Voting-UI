@@ -1,5 +1,5 @@
 import { ChainId } from '@uniswap/sdk'
-import React  from 'react'
+import React from 'react'
 import { Text } from 'rebass'
 import { NavLink } from 'react-router-dom'
 import { darken } from 'polished'
@@ -10,7 +10,7 @@ import styled from 'styled-components'
 import Logo from '../../assets/svg/logo.svg'
 //import LogoDark from '../../assets/svg/logo_white.svg'
 import { useActiveWeb3React } from '../../hooks'
-import { useETHBalances} from '../../state/wallet/hooks'
+import { useETHBalances } from '../../state/wallet/hooks'
 //import { CardNoise } from '../earn/styled'
 //import { CountUp } from 'use-count-up'
 //import { TYPE} from '../../theme'
@@ -90,7 +90,6 @@ const HeaderRow = styled(RowFixed)`
    width: 100%;
   `};
 `
-
 
 const AccountElement = styled.div<{ active: boolean }>`
   display: flex;
@@ -212,7 +211,7 @@ export default function Header() {
   return (
     <HeaderFrame>
       <HeaderRow>
-        <StyledNavLink id={`stake-nav-link`} to={'/vote'} >
+        <StyledNavLink id={`stake-nav-link`} to={'/vote'}>
           <BTRUSTIcon>
             <img width={'96px'} src={Logo} alt="logo" />
           </BTRUSTIcon>

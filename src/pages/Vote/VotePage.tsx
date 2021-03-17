@@ -18,7 +18,7 @@ import { useActiveWeb3React } from '../../hooks'
 import { AVERAGE_BLOCK_TIME_IN_SECS, COMMON_CONTRACT_NAMES, UNI, ZERO_ADDRESS } from '../../constants'
 import { isAddress, getEtherscanLink } from '../../utils'
 import { ApplicationModal } from '../../state/application/actions'
-import { useModalOpen, useToggleDelegateModal,  useBlockNumber, useToggleVoteModal } from '../../state/application/hooks'
+import { useModalOpen, useToggleDelegateModal, useBlockNumber, useToggleVoteModal } from '../../state/application/hooks'
 import DelegateModal from '../../components/vote/DelegateModal'
 import { GreyCard } from '../../components/Card'
 import { useTokenBalance } from '../../state/wallet/hooks'
@@ -116,11 +116,9 @@ export default function VotePage({
   // update support based on button interactions
   const [support, setSupport] = useState<boolean>(true)
 
-
   const showVoteModal = useModalOpen(ApplicationModal.VOTE)
 
   const toggleVoteModal = useToggleVoteModal()
- 
 
   // toggle for showing delegation modal
   const showDelegateModal = useModalOpen(ApplicationModal.DELEGATE)

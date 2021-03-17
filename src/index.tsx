@@ -55,15 +55,15 @@ ReactDOM.render(
     <FixedGlobalStyle />
     <Web3ReactProvider getLibrary={getLibrary}>
       <Web3ProviderNetwork getLibrary={getLibrary}>
-          <Provider store={store}>
-            <Updaters />
-            <ThemeProvider>
-              <ThemedGlobalStyle />
-              <HashRouter>
-                <App />
-              </HashRouter>
-            </ThemeProvider>
-          </Provider>
+        <Provider store={store}>
+          <Updaters />
+          <ThemeProvider>
+            <ThemedGlobalStyle />
+            <HashRouter>
+              <App />
+            </HashRouter>
+          </ThemeProvider>
+        </Provider>
       </Web3ProviderNetwork>
     </Web3ReactProvider>
   </StrictMode>,

@@ -56,7 +56,7 @@ export default function App() {
           <Polling />
           <Web3ReactManager>
             <Switch>
-            <Route exact strict path="/" component={Vote} />
+              <Route exact strict path="/" component={Vote} />
               <Route exact strict path="/vote" component={Vote} />
               <Route exact strict path="/vote/:id" component={VotePage} />
             </Switch>

@@ -104,4 +104,3 @@ export function getRouterContract(_: number, library: Web3Provider, account?: st
 export function escapeRegExp(string: string): string {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') // $& means the whole matched string
 }
-

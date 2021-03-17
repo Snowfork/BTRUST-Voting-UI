@@ -126,10 +126,7 @@ export default function Vote() {
   )
   */
 
- const showUnlockVoting = Boolean(
-  true
- )
-  
+  const showUnlockVoting = Boolean(true)
 
   return (
     <PageWrapper gap="lg" justify="center">

@@ -122,5 +122,3 @@ export function useCurrencyBalances(
 export function useCurrencyBalance(account?: string, currency?: Currency): CurrencyAmount | undefined {
   return useCurrencyBalances(account, [currency])[0]
 }
-
-

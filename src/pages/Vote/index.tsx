@@ -126,10 +126,7 @@ export default function Vote() {
   )
   */
 
- const showUnlockVoting = Boolean(
-  true
- )
-  
+  const showUnlockVoting = Boolean(true)
 
   return (
     <PageWrapper gap="lg" justify="center">
@@ -238,7 +235,7 @@ export default function Vote() {
         })}
       </TopSection>
       <TYPE.subHeader color="text3">
-        A minimum threshhold of 1% of the total UNI supply is required to submit proposals
+        A minimum threshhold of 1% of the total BTRUST supply is required to submit proposals
       </TYPE.subHeader>
     </PageWrapper>
   )

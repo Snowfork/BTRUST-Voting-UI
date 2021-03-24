@@ -3,26 +3,21 @@ import React from 'react'
 import { Text } from 'rebass'
 import { NavLink } from 'react-router-dom'
 import { darken } from 'polished'
-//import { useTranslation } from 'react-i18next'
 
 import styled from 'styled-components'
-
 import Logo from '../../assets/svg/logo.svg'
-//import LogoDark from '../../assets/svg/logo_white.svg'
 import { useActiveWeb3React } from '../../hooks'
-import { useETHBalances } from '../../state/wallet/hooks'
-//import { CardNoise } from '../earn/styled'
-//import { CountUp } from 'use-count-up'
-//import { TYPE} from '../../theme'
-
-import { YellowCard } from '../Card'
+import { useETHBalances, useTokenBalance } from '../../state/wallet/hooks'
+import { LightGreyCard } from '../Card'
 
 import { RowFixed } from '../Row'
 import Web3Status from '../Web3Status'
-//import usePrevious from '../../hooks/usePrevious'
+
+import { BTRUST } from '../../constants'
 
 const HeaderFrame = styled.div`
   display: grid;
+  background-color: #ffffff;
   grid-template-columns: 1fr 120px;
   align-items: center;
   justify-content: space-between;
@@ -31,7 +26,7 @@ const HeaderFrame = styled.div`
   width: 100%;
   top: 0;
   position: relative;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid rgba(24, 30, 71, 1);
   padding: 1rem;
   z-index: 2;
   ${({ theme }) => theme.mediaWidth.upToMedium`
@@ -95,14 +90,14 @@ const AccountElement = styled.div<{ active: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: ${({ theme, active }) => (!active ? theme.bg1 : theme.bg3)};
+  background-color: #f8f8fa;
   border-radius: 12px;
   white-space: nowrap;
   width: 100%;
   cursor: pointer;
 
   :focus {
-    border: 1px solid blue;
+    border: 1px solid #181e47;
   }
 `
 
@@ -112,7 +107,7 @@ const HideSmall = styled.span`
   `};
 `
 
-const NetworkCard = styled(YellowCard)`
+const NetworkCard = styled(LightGreyCard)`
   border-radius: 12px;
   padding: 8px 12px;
   ${({ theme }) => theme.mediaWidth.upToSmall`
@@ -172,7 +167,7 @@ export const StyledMenuButton = styled.button`
   width: 100%;
   height: 100%;
   border: none;
-  background-color: transparent;
+  background-color: #181e47;
   margin: 0;
   padding: 0;
   height: 35px;
@@ -185,7 +180,7 @@ export const StyledMenuButton = styled.button`
   :focus {
     cursor: pointer;
     outline: none;
-    background-color: ${({ theme }) => theme.bg4};
+    background-color: ${({ theme }) => theme.bg3};
   }
 
   svg {
@@ -204,9 +199,12 @@ const NETWORK_LABELS: { [chainId in ChainId]?: string } = {
 }
 
 export default function Header() {
+
   const { account, chainId } = useActiveWeb3React()
+  const bTrust = chainId ? BTRUST[chainId] : undefined
 
   const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
+  const userBTrustBalance = useTokenBalance(account ?? undefined, bTrust)
 
   return (
     <HeaderFrame>
@@ -228,6 +226,11 @@ export default function Header() {
             {account && userEthBalance ? (
               <BalanceText style={{ flexShrink: 0 }} pl="0.75rem" pr="0.5rem" fontWeight={500}>
                 {userEthBalance?.toSignificant(4)} ETH
+              </BalanceText>
+            ) : null}
+            {account && userBTrustBalance ? (
+              <BalanceText style={{ flexShrink: 0 }} pl="0.75rem" pr="0.5rem" fontWeight={500}>
+                {userBTrustBalance?.toSignificant(4)} BTRUST
               </BalanceText>
             ) : null}
             <Web3Status />

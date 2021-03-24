@@ -1,7 +1,7 @@
-import { UNI, PRELOADED_PROPOSALS } from './../../constants/index'
+import { BTRUST, PRELOADED_PROPOSALS } from './../../constants/index'
 import { TokenAmount } from '@uniswap/sdk'
 import { isAddress } from 'ethers/lib/utils'
-import { useGovernanceContract, useUniContract } from '../../hooks/useContract'
+import { useGovernanceContract, useBTrustContract } from '../../hooks/useContract'
 import { useSingleCallResult, useSingleContractMultipleData } from '../multicall/hooks'
 import { useActiveWeb3React } from '../../hooks'
 import { ethers, utils } from 'ethers'
@@ -9,7 +9,9 @@ import { calculateGasMargin } from '../../utils'
 import { TransactionResponse } from '@ethersproject/providers'
 import { useTransactionAdder } from '../transactions/hooks'
 import { useState, useEffect, useCallback } from 'react'
-import { abi as GOV_ABI } from '@uniswap/governance/build/GovernorAlpha.json'
+//import { abi as GOV_ABI } from '@uniswap/governance/build/GovernorAlpha.json'
+import GOVERNANCE from '../../abi/Governance.json'
+const GOV_ABI = GOVERNANCE.abi
 
 interface ProposalDetail {
   target: string
@@ -149,47 +151,47 @@ export function useProposalData(id: string): ProposalData | undefined {
 // get the users delegatee if it exists
 export function useUserDelegatee(): string {
   const { account } = useActiveWeb3React()
-  const uniContract = useUniContract()
-  const { result } = useSingleCallResult(uniContract, 'delegates', [account ?? undefined])
+  const bTrustContract = useBTrustContract()
+  const { result } = useSingleCallResult(bTrustContract, 'delegates', [account ?? undefined])
   return result?.[0] ?? undefined
 }
 
 // gets the users current votes
 export function useUserVotes(): TokenAmount | undefined {
   const { account, chainId } = useActiveWeb3React()
-  const uniContract = useUniContract()
+  const bTrustContract = useBTrustContract()
 
   // check for available votes
-  const uni = chainId ? UNI[chainId] : undefined
-  const votes = useSingleCallResult(uniContract, 'getCurrentVotes', [account ?? undefined])?.result?.[0]
-  return votes && uni ? new TokenAmount(uni, votes) : undefined
+  const bTrust = chainId ? BTRUST[chainId] : undefined
+  const votes = useSingleCallResult(bTrustContract, 'getCurrentVotes', [account ?? undefined])?.result?.[0]
+  return votes && bTrust ? new TokenAmount(bTrust, votes) : undefined
 }
 
 // fetch available votes as of block (usually proposal start block)
 export function useUserVotesAsOfBlock(block: number | undefined): TokenAmount | undefined {
   const { account, chainId } = useActiveWeb3React()
-  const uniContract = useUniContract()
+  const bTrustContract = useBTrustContract()
 
   // check for available votes
-  const uni = chainId ? UNI[chainId] : undefined
-  const votes = useSingleCallResult(uniContract, 'getPriorVotes', [account ?? undefined, block ?? undefined])
+  const bTrust = chainId ? BTRUST[chainId] : undefined
+  const votes = useSingleCallResult(bTrustContract, 'getPriorVotes', [account ?? undefined, block ?? undefined])
     ?.result?.[0]
-  return votes && uni ? new TokenAmount(uni, votes) : undefined
+  return votes && bTrust ? new TokenAmount(bTrust, votes) : undefined
 }
 
 export function useDelegateCallback(): (delegatee: string | undefined) => undefined | Promise<string> {
   const { account, chainId, library } = useActiveWeb3React()
   const addTransaction = useTransactionAdder()
 
-  const uniContract = useUniContract()
+  const bTrustContract = useBTrustContract()
 
   return useCallback(
     (delegatee: string | undefined) => {
       if (!library || !chainId || !account || !isAddress(delegatee ?? '')) return undefined
       const args = [delegatee]
-      if (!uniContract) throw new Error('No UNI Contract!')
-      return uniContract.estimateGas.delegate(...args, {}).then(estimatedGasLimit => {
-        return uniContract
+      if (!bTrustContract) throw new Error('No BTRUST Contract!')
+      return bTrustContract.estimateGas.delegate(...args, {}).then(estimatedGasLimit => {
+        return bTrustContract
           .delegate(...args, { value: null, gasLimit: calculateGasMargin(estimatedGasLimit) })
           .then((response: TransactionResponse) => {
             addTransaction(response, {
@@ -199,7 +201,7 @@ export function useDelegateCallback(): (delegatee: string | undefined) => undefi
           })
       })
     },
-    [account, addTransaction, chainId, library, uniContract]
+    [account, addTransaction, chainId, library, bTrustContract]
   )
 }
 

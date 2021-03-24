@@ -1,11 +1,3 @@
-import { Contract } from '@ethersproject/contracts'
-// Change address Governance and Token ABI deployed on ropstein below[ experimentation use (ropstein-dummy-governance folder)]
-import { abi as GOVERNANCE_ABI } from '@uniswap/governance/build/GovernorAlpha.json'
-import { abi as UNI_ABI } from '@uniswap/governance/build/Uni.json'
-import { ChainId } from '@uniswap/sdk'
-import { useMemo } from 'react'
-// Change address Governance and Token addresses deployed on ropstein below[ experimentation use (ropstein-dummy-governance folder)]
-import { GOVERNANCE_ADDRESS, UNI } from '../constants'
 import {
   ARGENT_WALLET_DETECTOR_ABI,
   ARGENT_WALLET_DETECTOR_MAINNET_ADDRESS
@@ -18,6 +10,16 @@ import UNISOCKS_ABI from '../constants/abis/unisocks.json'
 import { MULTICALL_ABI, MULTICALL_NETWORKS } from '../constants/multicall'
 import { getContract } from '../utils'
 import { useActiveWeb3React } from './index'
+
+import { Contract } from '@ethersproject/contracts'
+import GOVERNANCE from '../abi/Governance.json'
+import BTRUST from '../abi/BTRUST.json'
+import { ChainId } from '@uniswap/sdk'
+import { useMemo } from 'react'
+import { GOVERNANCE_ADDRESS, BTRUST_ADDRESS } from '../constants'
+
+const GOVERNANCE_ABI = GOVERNANCE.abi
+const BTRUST_ABI = BTRUST.abi
 
 // returns null on errors
 function useContract(address: string | undefined, ABI: any, withSignerIfPossible = true): Contract | null {
@@ -80,9 +82,17 @@ export function useGovernanceContract(): Contract | null {
   return useContract(GOVERNANCE_ADDRESS, GOVERNANCE_ABI, true)
 }
 
-export function useUniContract(): Contract | null {
-  const { chainId } = useActiveWeb3React()
-  return useContract(chainId ? UNI[chainId].address : undefined, UNI_ABI, true)
+export function useBTrustContract(): Contract | null {
+  //const { chainId } = useActiveWeb3React()
+  return useContract(BTRUST_ADDRESS, BTRUST_ABI, true)
+}
+
+export function useBTrustAddress(): string {
+  return BTRUST_ADDRESS
+}
+
+export function useGovernanceAddress(): string {
+  return GOVERNANCE_ADDRESS
 }
 
 export function useSocksController(): Contract | null {

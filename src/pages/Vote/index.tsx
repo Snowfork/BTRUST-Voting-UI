@@ -9,12 +9,12 @@ import { ButtonPrimary } from '../../components/Button'
 
 import { Button } from 'rebass/styled-components'
 import { darken } from 'polished'
-import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
+import { CardSection, DataCard, CardNoise } from '../../components/earn/styled'
 import { useAllProposalData, ProposalData, useUserVotes, useUserDelegatee } from '../../state/governance/hooks'
 import DelegateModal from '../../components/vote/DelegateModal'
 import { useTokenBalance } from '../../state/wallet/hooks'
 import { useActiveWeb3React } from '../../hooks'
-import { UNI, ZERO_ADDRESS } from '../../constants'
+import { BTRUST, ZERO_ADDRESS } from '../../constants'
 import { JSBI, TokenAmount, ChainId } from '@uniswap/sdk'
 import { shortenAddress, getEtherscanLink } from '../../utils'
 import Loader from '../../components/Loader'
@@ -60,7 +60,6 @@ const ProposalTitle = styled.span`
 `
 
 const VoteCard = styled(DataCard)`
-  background: radial-gradient(76.02% 75.41% at 1.84% 0%, #27ae60 0%, #000000 100%);
   overflow: hidden;
 `
 
@@ -93,7 +92,7 @@ const StyledExternalLink = styled(ExternalLink)`
 `
 
 const EmptyProposals = styled.div`
-  border: 1px solid ${({ theme }) => theme.text4};
+  border: 1px solid ${({ theme }) => theme.text1};
   padding: 16px 12px;
   border-radius: 12px;
   display: flex;
@@ -114,7 +113,7 @@ export default function Vote() {
 
   // user data
   const availableVotes: TokenAmount | undefined = useUserVotes()
-  const uniBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, chainId ? UNI[chainId] : undefined)
+  const bTrustBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, chainId ? BTRUST[chainId] : undefined)
   const userDelegatee: string | undefined = useUserDelegatee()
 
   // show delegation option if they have have a balance, but have not delegated
@@ -137,7 +136,6 @@ export default function Vote() {
       />
       <TopSection gap="md">
         <VoteCard>
-          <CardBGImage />
           <CardNoise />
           <CardSection>
             <AutoColumn gap="md">
@@ -152,14 +150,13 @@ export default function Vote() {
               </RowBetween>
               <ExternalLink
                 style={{ color: 'white', textDecoration: 'underline' }}
-                href="https://uniswap.org/blog/uni"
+                href="http://wwww.google.com"
                 target="_blank"
               >
                 <TYPE.white fontSize={14}>Read more about BTRUST governance</TYPE.white>
               </ExternalLink>
             </AutoColumn>
           </CardSection>
-          <CardBGImage />
           <CardNoise />
         </VoteCard>
       </TopSection>
@@ -180,12 +177,12 @@ export default function Vote() {
             <TYPE.body fontWeight={500} mr="6px">
               <FormattedCurrencyAmount currencyAmount={availableVotes} /> Votes
             </TYPE.body>
-          ) : uniBalance &&
+          ) : bTrustBalance &&
             userDelegatee &&
             userDelegatee !== ZERO_ADDRESS &&
-            JSBI.notEqual(JSBI.BigInt(0), uniBalance?.raw) ? (
+            JSBI.notEqual(JSBI.BigInt(0), bTrustBalance?.raw) ? (
             <TYPE.body fontWeight={500} mr="6px">
-              <FormattedCurrencyAmount currencyAmount={uniBalance} /> Votes
+              <FormattedCurrencyAmount currencyAmount={bTrustBalance} /> Votes
             </TYPE.body>
           ) : (
             ''

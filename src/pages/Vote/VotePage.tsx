@@ -15,12 +15,12 @@ import ReactMarkdown from 'react-markdown'
 import VoteModal from '../../components/vote/VoteModal'
 import { TokenAmount, JSBI } from '@uniswap/sdk'
 import { useActiveWeb3React } from '../../hooks'
-import { AVERAGE_BLOCK_TIME_IN_SECS, COMMON_CONTRACT_NAMES, UNI, ZERO_ADDRESS } from '../../constants'
+import { AVERAGE_BLOCK_TIME_IN_SECS, COMMON_CONTRACT_NAMES, BTRUST, ZERO_ADDRESS } from '../../constants'
 import { isAddress, getEtherscanLink } from '../../utils'
 import { ApplicationModal } from '../../state/application/actions'
 import { useModalOpen, useToggleDelegateModal, useBlockNumber, useToggleVoteModal } from '../../state/application/hooks'
 import DelegateModal from '../../components/vote/DelegateModal'
-import { GreyCard } from '../../components/Card'
+import { LightGreyCard } from '../../components/Card'
 import { useTokenBalance } from '../../state/wallet/hooks'
 import useCurrentBlockTimestamp from 'hooks/useCurrentBlockTimestamp'
 import { BigNumber } from 'ethers'
@@ -30,7 +30,7 @@ const PageWrapper = styled(AutoColumn)`
 `
 
 const ProposalInfo = styled(AutoColumn)`
-  border: 1px solid ${({ theme }) => theme.bg4};
+  border: 1px solid ${({ theme }) => theme.bg1};
   border-radius: 12px;
   padding: 1.5rem;
   position: relative;
@@ -158,12 +158,12 @@ export default function VotePage({
   */
   const showVotingButtons = availableVotes || true
 
-  const uniBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, chainId ? UNI[chainId] : undefined)
+  const bTrustBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, chainId ? BTRUST[chainId] : undefined)
   const userDelegatee: string | undefined = useUserDelegatee()
 
   // in blurb link to home page if they are able to unlock
   const showLinkForUnlock = Boolean(
-    uniBalance && JSBI.notEqual(uniBalance.raw, JSBI.BigInt(0)) && userDelegatee === ZERO_ADDRESS
+    bTrustBalance && JSBI.notEqual(bTrustBalance.raw, JSBI.BigInt(0)) && userDelegatee === ZERO_ADDRESS
   )
 
   // show links in propsoal details if content is an address
@@ -199,9 +199,9 @@ export default function VotePage({
             </TYPE.main>
           </RowBetween>
           {proposalData && proposalData.status === 'active' && !showVotingButtons && (
-            <GreyCard>
+            <LightGreyCard>
               <TYPE.black>
-                Only UNI votes that were self delegated or delegated to another address before block{' '}
+                Only BTRUST votes that were self delegated or delegated to another address before block{' '}
                 {proposalData.startBlock} are eligible for voting.{' '}
                 {showLinkForUnlock && (
                   <span>
@@ -209,7 +209,7 @@ export default function VotePage({
                   </span>
                 )}
               </TYPE.black>
-            </GreyCard>
+            </LightGreyCard>
           )}
         </AutoColumn>
         {showVotingButtons ? (

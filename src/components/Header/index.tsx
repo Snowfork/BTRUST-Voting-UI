@@ -199,7 +199,6 @@ const NETWORK_LABELS: { [chainId in ChainId]?: string } = {
 }
 
 export default function Header() {
-
   const { account, chainId } = useActiveWeb3React()
   const bTrust = chainId ? BTRUST[chainId] : undefined
 

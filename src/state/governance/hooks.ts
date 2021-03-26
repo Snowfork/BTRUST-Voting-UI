@@ -9,9 +9,11 @@ import { calculateGasMargin } from '../../utils'
 import { TransactionResponse } from '@ethersproject/providers'
 import { useTransactionAdder } from '../transactions/hooks'
 import { useState, useEffect, useCallback } from 'react'
+//import encodeParameters from '../../utils/Ethereum'
 //import { abi as GOV_ABI } from '@uniswap/governance/build/GovernorAlpha.json'
 import GOVERNANCE from '../../abi/Governance.json'
 const GOV_ABI = GOVERNANCE.abi
+
 
 interface ProposalDetail {
   target: string
@@ -32,7 +34,7 @@ export interface ProposalData {
   details: ProposalDetail[]
 }
 
-const enumerateProposalState = (state: number) => {
+export const enumerateProposalState = (state: number) => {
   const proposalStates = ['pending', 'active', 'canceled', 'defeated', 'succeeded', 'queued', 'expired', 'executed']
   return proposalStates[state]
 }
@@ -141,6 +143,20 @@ export function useAllProposalData() {
   } else {
     return []
   }
+}
+
+// get total number of proposals in each of the states 
+export function useProposalCountByState() {
+  const proposalStates = ['pending', 'active', 'canceled', 'defeated', 'succeeded', 'queued', 'expired', 'executed']
+  const result = [0, 0, 0, 0, 0, 0, 0, 0]
+  const allProposals = useAllProposalData()
+  allProposals.forEach(p => {
+    const res = proposalStates.indexOf(p.status)
+    if (res !== -1) {
+      result[res]++
+    }
+  })
+  return result
 }
 
 export function useProposalData(id: string): ProposalData | undefined {

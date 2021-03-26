@@ -10,7 +10,14 @@ import { ButtonPrimary } from '../../components/Button'
 import { Button } from 'rebass/styled-components'
 import { darken } from 'polished'
 import { CardSection, DataCard, CardNoise } from '../../components/earn/styled'
-import { useAllProposalData, ProposalData, useUserVotes, useUserDelegatee } from '../../state/governance/hooks'
+import {
+  useAllProposalData,
+  ProposalData,
+  useUserVotes,
+  useUserDelegatee,
+  useProposalCountByState,
+  enumerateProposalState
+} from '../../state/governance/hooks'
 import DelegateModal from '../../components/vote/DelegateModal'
 import { useTokenBalance } from '../../state/wallet/hooks'
 import { useActiveWeb3React } from '../../hooks'
@@ -21,6 +28,7 @@ import Loader from '../../components/Loader'
 import FormattedCurrencyAmount from '../../components/FormattedCurrencyAmount'
 import { useModalOpen, useToggleDelegateModal } from '../../state/application/hooks'
 import { ApplicationModal } from '../../state/application/actions'
+//import { unwrapResult } from '@reduxjs/toolkit'
 
 const PageWrapper = styled(AutoColumn)``
 
@@ -33,12 +41,13 @@ const Proposal = styled(Button)`
   padding: 0.75rem 1rem;
   width: 100%;
   margin-top: 1rem;
+  border: 1px solid #181e47;
   border-radius: 12px;
   display: grid;
   grid-template-columns: 48px 1fr 120px;
   align-items: center;
   text-align: left;
-  outline: none;
+  outline: #181e47;
   cursor: pointer;
   color: ${({ theme }) => theme.text1};
   text-decoration: none;
@@ -71,7 +80,7 @@ const WrapSmall = styled(RowBetween)`
 `
 
 const TextButton = styled(TYPE.main)`
-  color: ${({ theme }) => theme.primary1};
+  color: #181e47;
   :hover {
     cursor: pointer;
     text-decoration: underline;
@@ -113,19 +122,19 @@ export default function Vote() {
 
   // user data
   const availableVotes: TokenAmount | undefined = useUserVotes()
-  const bTrustBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, chainId ? BTRUST[chainId] : undefined)
+  const bTrustBalance: TokenAmount | undefined = useTokenBalance(
+    account ?? undefined,
+    chainId ? BTRUST[chainId] : undefined
+  )
   const userDelegatee: string | undefined = useUserDelegatee()
 
   // show delegation option if they have have a balance, but have not delegated
-
-  /*
-  Temporarily changed to true to show unlocking voting option
   const showUnlockVoting = Boolean(
-   uniBalance && JSBI.notEqual(uniBalance.raw, JSBI.BigInt(0)) && userDelegatee === ZERO_ADDRESS
+    bTrustBalance && JSBI.notEqual(bTrustBalance.raw, JSBI.BigInt(0)) && userDelegatee === ZERO_ADDRESS
   )
-  */
 
-  const showUnlockVoting = Boolean(true)
+  // get totals for proposals in each state
+  const counts = useProposalCountByState()
 
   return (
     <PageWrapper gap="lg" justify="center">
@@ -162,7 +171,9 @@ export default function Vote() {
       </TopSection>
       <TopSection gap="2px">
         <WrapSmall>
-          <TYPE.mediumHeader style={{ margin: '0.5rem 0.5rem 0.5rem 0', flexShrink: 0 }}>Proposals</TYPE.mediumHeader>
+          <TYPE.mediumHeader style={{ margin: '0.5rem 0.5rem 0.5rem 0', flexShrink: 0 }}>
+            Total Proposals: {allProposals ? allProposals.length : 0}
+          </TYPE.mediumHeader>
           {(!allProposals || allProposals.length === 0) && !availableVotes && <Loader />}
           {showUnlockVoting ? (
             <ButtonPrimary
@@ -213,6 +224,17 @@ export default function Vote() {
             )}
           </RowBetween>
         )}
+        <CardSection>
+          <RowBetween>
+            {counts.map((count: number, i) => {
+              return (
+                <ProposalStatus style={{ fontSize: '9px' }} key={i} status={enumerateProposalState(i)}>
+                  {enumerateProposalState(i)}: {count}
+                </ProposalStatus>
+              )
+            })}
+          </RowBetween>
+        </CardSection>
         {allProposals?.length === 0 && (
           <EmptyProposals>
             <TYPE.body style={{ marginBottom: '8px' }}>No proposals found.</TYPE.body>
@@ -224,8 +246,8 @@ export default function Vote() {
         {allProposals?.map((p: ProposalData, i) => {
           return (
             <Proposal as={Link} to={'/vote/' + p.id} key={i}>
-              <ProposalNumber>{p.id}</ProposalNumber>
-              <ProposalTitle>{p.title}</ProposalTitle>
+              <ProposalNumber>{p.id} </ProposalNumber>
+              <ProposalTitle>{p.title} </ProposalTitle>
               <ProposalStatus status={p.status}>{p.status}</ProposalStatus>
             </Proposal>
           )

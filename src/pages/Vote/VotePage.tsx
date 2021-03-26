@@ -97,10 +97,12 @@ const WrapSmall = styled(RowBetween)`
 
 const DetailText = styled.div`
   word-break: break-all;
+  color: black;
 `
 
 const ProposerAddressLink = styled(ExternalLink)`
   word-break: break-all;
+  color: #000000;
 `
 
 export default function VotePage({
@@ -147,18 +149,17 @@ export default function VotePage({
   // only count available votes as of the proposal start block
   const availableVotes: TokenAmount | undefined = useUserVotesAsOfBlock(proposalData?.startBlock ?? undefined)
 
-  // (REVERT PLEASE)only show voting if user has > 0 votes at proposal start block and proposal is active,
-  /* Temporary make true for demo 
+  // only show voting if user has > 0 votes at proposal start block and proposal is active,
   const showVotingButtons =
     availableVotes &&
     JSBI.greaterThan(availableVotes.raw, JSBI.BigInt(0)) &&
     proposalData &&
     proposalData.status === 'active'
 
-  */
-  const showVotingButtons = availableVotes || true
-
-  const bTrustBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, chainId ? BTRUST[chainId] : undefined)
+  const bTrustBalance: TokenAmount | undefined = useTokenBalance(
+    account ?? undefined,
+    chainId ? BTRUST[chainId] : undefined
+  )
   const userDelegatee: string | undefined = useUserDelegatee()
 
   // in blurb link to home page if they are able to unlock

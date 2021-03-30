@@ -14,7 +14,6 @@ import { useState, useEffect, useCallback } from 'react'
 import GOVERNANCE from '../../abi/Governance.json'
 const GOV_ABI = GOVERNANCE.abi
 
-
 interface ProposalDetail {
   target: string
   functionSig: string
@@ -145,7 +144,7 @@ export function useAllProposalData() {
   }
 }
 
-// get total number of proposals in each of the states 
+// get total number of proposals in each of the states
 export function useProposalCountByState() {
   const proposalStates = ['pending', 'active', 'canceled', 'defeated', 'succeeded', 'queued', 'expired', 'executed']
   const result = [0, 0, 0, 0, 0, 0, 0, 0]

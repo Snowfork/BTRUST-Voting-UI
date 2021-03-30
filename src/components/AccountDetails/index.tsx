@@ -105,7 +105,7 @@ const LowerSection = styled.div`
   h5 {
     margin: 0;
     font-weight: 400;
-    color: ${({ theme }) => theme.text3};
+    color: ${({ theme }) => theme.text1};
   }
 `
 
@@ -133,7 +133,7 @@ const AccountControl = styled.div`
 
 const AddressLink = styled(ExternalLink)<{ hasENS: boolean; isENS: boolean }>`
   font-size: 0.825rem;
-  color: ${({ theme }) => theme.text3};
+  color: ${({ theme }) => theme.text1};
   margin-left: 1rem;
   font-size: 0.825rem;
   display: flex;
@@ -154,7 +154,7 @@ const CloseIcon = styled.div`
 
 const CloseColor = styled(Close)`
   path {
-    stroke: ${({ theme }) => theme.text4};
+    stroke: ${({ theme }) => theme.text1};
   }
 `
 
@@ -162,7 +162,7 @@ const WalletName = styled.div`
   width: initial;
   font-size: 0.825rem;
   font-weight: 500;
-  color: ${({ theme }) => theme.text3};
+  color: ${({ theme }) => theme.text1};
 `
 
 const IconWrapper = styled.div<{ size?: number }>`
@@ -187,6 +187,7 @@ const TransactionListWrapper = styled.div`
 const WalletAction = styled(ButtonSecondary)`
   width: fit-content;
   font-weight: 400;
+  color: black;
   margin-left: 8px;
   font-size: 0.825rem;
   padding: 4px 6px;

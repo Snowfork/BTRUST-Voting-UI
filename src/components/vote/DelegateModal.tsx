@@ -13,7 +13,7 @@ import { isAddress } from 'ethers/lib/utils'
 import useENS from '../../hooks/useENS'
 import { useDelegateCallback } from '../../state/governance/hooks'
 import { useTokenBalance } from '../../state/wallet/hooks'
-import { UNI } from '../../constants'
+import { BTRUST } from '../../constants'
 import { LoadingView, SubmittedView } from '../ModalViews'
 
 const ContentWrapper = styled(AutoColumn)`
@@ -55,7 +55,7 @@ export default function DelegateModal({ isOpen, onDismiss, title }: VoteModalPro
   const { address: parsedAddress } = useENS(activeDelegate)
 
   // get the number of votes available to delegate
-  const uniBalance = useTokenBalance(account ?? undefined, chainId ? UNI[chainId] : undefined)
+  const bTrustBalance = useTokenBalance(account ?? undefined, chainId ? BTRUST[chainId] : undefined)
 
   const delegateCallback = useDelegateCallback()
 
@@ -116,7 +116,7 @@ export default function DelegateModal({ isOpen, onDismiss, title }: VoteModalPro
         <LoadingView onDismiss={wrappedOndismiss}>
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>{usingDelegate ? 'Delegating votes' : 'Unlocking Votes'}</TYPE.largeHeader>
-            <TYPE.main fontSize={36}>{uniBalance?.toSignificant(4)}</TYPE.main>
+            <TYPE.main fontSize={36}>{bTrustBalance?.toSignificant(4)}</TYPE.main>
           </AutoColumn>
         </LoadingView>
       )}
@@ -124,7 +124,7 @@ export default function DelegateModal({ isOpen, onDismiss, title }: VoteModalPro
         <SubmittedView onDismiss={wrappedOndismiss} hash={hash}>
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>Transaction Submitted</TYPE.largeHeader>
-            <TYPE.main fontSize={36}>{uniBalance?.toSignificant(4)}</TYPE.main>
+            <TYPE.main fontSize={36}>{bTrustBalance?.toSignificant(4)}</TYPE.main>
           </AutoColumn>
         </SubmittedView>
       )}

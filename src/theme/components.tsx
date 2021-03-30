@@ -2,7 +2,6 @@ import React, { HTMLProps, useCallback } from 'react'
 import ReactGA from 'react-ga'
 import { Link } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
-import { darken } from 'polished'
 import { ArrowLeft, X, ExternalLink as LinkIconFeather, Trash } from 'react-feather'
 
 export const ButtonText = styled.button`
@@ -33,22 +32,18 @@ export const Button = styled.button.attrs<{ warning: boolean }, { backgroundColo
   font-size: 1rem;
   border: none;
   outline: none;
-  background-color: ${({ backgroundColor }) => backgroundColor};
+  background-color: #181e47
   color: ${({ theme }) => theme.white};
   width: 100%;
 
   :hover,
   :focus {
-    background-color: ${({ backgroundColor }) => darken(0.05, backgroundColor)};
+    background-color: black;
+    width: 110%;
   }
-
-  :active {
-    background-color: ${({ backgroundColor }) => darken(0.1, backgroundColor)};
-  }
-
   :disabled {
     background-color: ${({ theme }) => theme.bg1};
-    color: ${({ theme }) => theme.text4};
+    color: ${({ theme }) => theme.text1};
     cursor: auto;
   }
 `
@@ -119,7 +114,7 @@ export const StyledInternalLink = styled(Link)`
 const StyledLink = styled.a`
   text-decoration: none;
   cursor: pointer;
-  color: ${({ theme }) => theme.primary1};
+  color: blue;
   font-weight: 500;
 
   :hover {
@@ -169,7 +164,7 @@ export const TrashIcon = styled(Trash)`
   height: 16px;
   width: 18px;
   margin-left: 10px;
-  stroke: ${({ theme }) => theme.text3};
+  stroke: ${({ theme }) => theme.text1};
 
   cursor: pointer;
   align-items: center;

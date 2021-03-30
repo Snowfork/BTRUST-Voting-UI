@@ -14,6 +14,7 @@ const InputPanel = styled.div`
   background-color: ${({ theme }) => theme.bg1};
   z-index: 1;
   width: 100%;
+  border: 3px solid #181e47;
 `
 
 const ContainerRow = styled.div<{ error: boolean }>`
@@ -40,13 +41,13 @@ const Input = styled.input<{ error?: boolean }>`
   width: 0;
   background-color: ${({ theme }) => theme.bg1};
   transition: color 300ms ${({ error }) => (error ? 'step-end' : 'step-start')};
-  color: ${({ error, theme }) => (error ? theme.red1 : theme.primary1)};
+  color: ${({ error, theme }) => (error ? theme.red1 : theme.primary2)};
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: 500;
   width: 100%;
   ::placeholder {
-    color: ${({ theme }) => theme.text4};
+    color: ${({ theme }) => theme.text1};
   }
   padding: 0px;
   -webkit-appearance: textfield;
@@ -61,7 +62,7 @@ const Input = styled.input<{ error?: boolean }>`
   }
 
   ::placeholder {
-    color: ${({ theme }) => theme.text4};
+    color: ${({ theme }) => theme.text1};
   }
 `
 

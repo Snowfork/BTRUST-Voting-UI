@@ -1,18 +1,20 @@
+
+/*
 import { TEST_ADDRESS_NEVER_USE_SHORTENED } from '../support/commands'
 
 describe('Landing Page', () => {
   beforeEach(() => cy.visit('/'))
-  it('loads swap page', () => {
-    cy.get('#swap-page')
+  it('loads vote page', () => {
+    cy.get('#vote-page')
   })
 
-  it('redirects to url /swap', () => {
-    cy.url().should('include', '/swap')
+  it('redirects to url /vote', () => {
+    cy.url().should('include', '/vote')
   })
 
-  it('allows navigation to pool', () => {
+  it('allows navigation to vote', () => {
     cy.get('#pool-nav-link').click()
-    cy.url().should('include', '/pool')
+    cy.url().should('include', '/vote/:id')
   })
 
   it('is connected', () => {
@@ -20,3 +22,4 @@ describe('Landing Page', () => {
     cy.get('#web3-account-identifier-row').contains(TEST_ADDRESS_NEVER_USE_SHORTENED)
   })
 })
+*/

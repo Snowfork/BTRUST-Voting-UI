@@ -39,10 +39,10 @@ export function colors(): Colors {
     black,
 
     // text
-    text1: '#000000',
+    text1: '#000000', // black
     text2: '#F8F8FA',
 
-    // backgrounds / greys / black / blue
+    // backgrounds / greys / white / blue
     bg1: '#F8F8FA',
     bg2: '#FFFFFF',
     bg3: '#181E47',
@@ -121,13 +121,13 @@ const TextWrapper = styled(Text)<{ color: keyof Colors }>`
 
 export const TYPE = {
   main(props: TextProps) {
-    return <TextWrapper fontWeight={500} color={'text2'} {...props} />
+    return <TextWrapper fontWeight={500} color={'black'} {...props} />
   },
   link(props: TextProps) {
     return <TextWrapper fontWeight={500} color={'primary1'} {...props} />
   },
   black(props: TextProps) {
-    return <TextWrapper fontWeight={500} color={'text1'} {...props} />
+    return <TextWrapper fontWeight={500} color={'text2'} {...props} />
   },
   white(props: TextProps) {
     return <TextWrapper fontWeight={500} color={'white'} {...props} />

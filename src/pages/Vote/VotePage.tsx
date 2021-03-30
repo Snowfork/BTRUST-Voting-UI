@@ -30,7 +30,7 @@ const PageWrapper = styled(AutoColumn)`
 `
 
 const ProposalInfo = styled(AutoColumn)`
-  border: 1px solid ${({ theme }) => theme.bg1};
+  border: 1px solid black;
   border-radius: 12px;
   padding: 1.5rem;
   position: relative;
@@ -72,7 +72,7 @@ const ProgressWrapper = styled.div`
   margin-top: 1rem;
   height: 4px;
   border-radius: 4px;
-  background-color: ${({ theme }) => theme.bg3};
+  background-color: ${({ theme }) => theme.bg2};
   position: relative;
 `
 
@@ -102,7 +102,7 @@ const DetailText = styled.div`
 
 const ProposerAddressLink = styled(ExternalLink)`
   word-break: break-all;
-  color: #000000;
+  color: blue;
 `
 
 export default function VotePage({
@@ -244,11 +244,11 @@ export default function VotePage({
             <CardSection>
               <AutoColumn gap="md">
                 <WrapSmall>
-                  <TYPE.black fontWeight={600}>For</TYPE.black>
-                  <TYPE.black fontWeight={600}>
+                  <TYPE.main fontWeight={600}>For</TYPE.main>
+                  <TYPE.main fontWeight={600}>
                     {' '}
                     {proposalData?.forCount.toLocaleString(undefined, { maximumFractionDigits: 0 })}
-                  </TYPE.black>
+                  </TYPE.main>
                 </WrapSmall>
               </AutoColumn>
               <ProgressWrapper>
@@ -260,10 +260,10 @@ export default function VotePage({
             <CardSection>
               <AutoColumn gap="md">
                 <WrapSmall>
-                  <TYPE.black fontWeight={600}>Against</TYPE.black>
-                  <TYPE.black fontWeight={600}>
+                  <TYPE.main fontWeight={600}>Against</TYPE.main>
+                  <TYPE.main fontWeight={600}>
                     {proposalData?.againstCount.toLocaleString(undefined, { maximumFractionDigits: 0 })}
-                  </TYPE.black>
+                  </TYPE.main>
                 </WrapSmall>
               </AutoColumn>
               <ProgressWrapper>

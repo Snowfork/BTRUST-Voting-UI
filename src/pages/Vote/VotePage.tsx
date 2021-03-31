@@ -201,7 +201,7 @@ export default function VotePage({
           </RowBetween>
           {proposalData && proposalData.status === 'active' && !showVotingButtons && (
             <LightGreyCard>
-              <TYPE.black>
+              <TYPE.main>
                 Only BTRUST votes that were self delegated or delegated to another address before block{' '}
                 {proposalData.startBlock} are eligible for voting.{' '}
                 {showLinkForUnlock && (
@@ -209,7 +209,7 @@ export default function VotePage({
                     <StyledInternalLink to="/vote">Unlock voting</StyledInternalLink> to prepare for the next proposal.
                   </span>
                 )}
-              </TYPE.black>
+              </TYPE.main>
             </LightGreyCard>
           )}
         </AutoColumn>

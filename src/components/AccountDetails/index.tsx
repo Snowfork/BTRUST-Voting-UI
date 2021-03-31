@@ -98,7 +98,7 @@ const LowerSection = styled.div`
   padding: 1.5rem;
   flex-grow: 1;
   overflow: auto;
-  background-color: ${({ theme }) => theme.bg2};
+  background-color: ${({ theme }) => theme.bg1};
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
 
@@ -138,7 +138,7 @@ const AddressLink = styled(ExternalLink)<{ hasENS: boolean; isENS: boolean }>`
   font-size: 0.825rem;
   display: flex;
   :hover {
-    color: ${({ theme }) => theme.text2};
+    color: ${({ theme }) => theme.bg3};
   }
 `
 

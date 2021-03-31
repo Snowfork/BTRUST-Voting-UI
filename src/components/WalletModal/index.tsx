@@ -323,7 +323,7 @@ export default function WalletModal({
           <CloseColor />
         </CloseIcon>
         {walletView !== WALLET_VIEWS.ACCOUNT ? (
-          <HeaderRow color="blue">
+          <HeaderRow color="black">
             <HoverText
               onClick={() => {
                 setPendingError(false)

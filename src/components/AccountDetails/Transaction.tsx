@@ -14,6 +14,7 @@ const TransactionWrapper = styled.div``
 const TransactionStatusText = styled.div`
   margin-right: 0.5rem;
   display: flex;
+  color: black;
   align-items: center;
   :hover {
     text-decoration: underline;

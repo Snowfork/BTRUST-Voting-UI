@@ -80,7 +80,7 @@ export default function AddressInputPanel({
   const { chainId } = useActiveWeb3React()
   const theme = useContext(ThemeContext)
 
-  const { address, loading, name } = useENS(value)
+  const { address, loading } = useENS(value)
 
   const handleInput = useCallback(
     event => {
@@ -93,6 +93,15 @@ export default function AddressInputPanel({
 
   const error = Boolean(value.length > 0 && !loading && !address)
 
+  /*
+  Old way used ensName change to new name to use address only for testnets 
+  {address && chainId && (
+    <ExternalLink href={getEtherscanLink(chainId, name ?? address, 'address')} style={{ fontSize: '14px' }}>
+      (View on Etherscan)
+    </ExternalLink>
+  )}
+  */
+
   return (
     <InputPanel id={id}>
       <ContainerRow error={error}>
@@ -103,7 +112,7 @@ export default function AddressInputPanel({
                 Recipient
               </TYPE.black>
               {address && chainId && (
-                <ExternalLink href={getEtherscanLink(chainId, name ?? address, 'address')} style={{ fontSize: '14px' }}>
+                <ExternalLink href={getEtherscanLink(chainId, address, 'address')} style={{ fontSize: '14px' }}>
                   (View on Etherscan)
                 </ExternalLink>
               )}

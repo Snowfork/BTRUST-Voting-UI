@@ -14,7 +14,7 @@ import { useAllProposalData, ProposalData, useUserVotes, useUserDelegatee } from
 import DelegateModal from '../../components/vote/DelegateModal'
 import { useTokenBalance } from '../../state/wallet/hooks'
 import { useActiveWeb3React } from '../../hooks'
-import { BTRUST, ZERO_ADDRESS } from '../../constants'
+import { BTrust, ZERO_ADDRESS } from '../../constants'
 import { JSBI, TokenAmount, ChainId } from '@uniswap/sdk'
 import { shortenAddress, getEtherscanLink } from '../../utils'
 import Loader from '../../components/Loader'
@@ -117,7 +117,7 @@ export default function Vote() {
   const availableVotes: TokenAmount | undefined = useUserVotes()
   const bTrustBalance: TokenAmount | undefined = useTokenBalance(
     account ?? undefined,
-    chainId ? BTRUST[chainId] : undefined
+    chainId ? BTrust[chainId] : undefined
   )
   const userDelegatee: string | undefined = useUserDelegatee()
 
@@ -176,7 +176,7 @@ export default function Vote() {
             </ButtonPrimary>
           ) : availableVotes && JSBI.notEqual(JSBI.BigInt(0), availableVotes?.raw) ? (
             <TYPE.body fontWeight={500} mr="6px">
-              <FormattedCurrencyAmount currencyAmount={availableVotes} /> Votes
+              <FormattedCurrencyAmount currencyAmount={availableVotes} /> Current Votes
             </TYPE.body>
           ) : bTrustBalance &&
             userDelegatee &&

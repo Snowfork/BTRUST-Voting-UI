@@ -14,8 +14,8 @@ const CopyIcon = styled(LinkStyledButton)`
   :hover,
   :active,
   :focus {
-    text-decoration: none;
-    color: ${({ theme }) => theme.text2};
+    text-decoration: underline;
+    color: ${({ theme }) => theme.bg3};
   }
 `
 const TransactionStatusText = styled.span`

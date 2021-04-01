@@ -7,11 +7,12 @@ import { fortmatic, injected, portis, walletconnect, walletlink } from '../conne
 import GOVERNANCE from '../abi/Governance.json'
 import BTRUST from '../abi/BTRUST.json'
 import TIMELOCK from '../abi/Timelock.json'
-//import GOVERNANCE_DECISIONS from '../abi/GovernanceDecisions.json'
+import GOVERNANCE_DECISIONS from '../abi/GovernanceDecisions.json'
 // deployed Ropsten Contract Addresses
 export const GOVERNANCE_ADDRESS = GOVERNANCE.address
 export const BTRUST_ADDRESS = BTRUST.address
 export const TIMELOCK_ADDRESS = TIMELOCK.address
+export const GOVERNANCE_DECISIONS_ADDRESS = GOVERNANCE_DECISIONS.address
 
 //export const ROUTER_ADDRESS = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D'
 
@@ -32,9 +33,10 @@ export const BTrust: { [chainId in ChainId]: Token } = {
 }
 
 export const COMMON_CONTRACT_NAMES: { [address: string]: string } = {
-  [BTRUST_ADDRESS]: 'UNI',
+  [BTRUST_ADDRESS]: 'BTRUST',
   [GOVERNANCE_ADDRESS]: 'Governance',
-  [TIMELOCK_ADDRESS]: 'Timelock'
+  [TIMELOCK_ADDRESS]: 'Timelock',
+  [GOVERNANCE_DECISIONS_ADDRESS]: 'GovernanceDecisions'
 }
 
 // TODO: specify merkle distributor for mainnet

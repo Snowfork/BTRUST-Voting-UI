@@ -15,7 +15,7 @@ import ReactMarkdown from 'react-markdown'
 import VoteModal from '../../components/vote/VoteModal'
 import { TokenAmount, JSBI } from '@uniswap/sdk'
 import { useActiveWeb3React } from '../../hooks'
-import { AVERAGE_BLOCK_TIME_IN_SECS, COMMON_CONTRACT_NAMES, BTRUST, ZERO_ADDRESS } from '../../constants'
+import { AVERAGE_BLOCK_TIME_IN_SECS, COMMON_CONTRACT_NAMES, BTrust, ZERO_ADDRESS } from '../../constants'
 import { isAddress, getEtherscanLink } from '../../utils'
 import { ApplicationModal } from '../../state/application/actions'
 import { useModalOpen, useToggleDelegateModal, useBlockNumber, useToggleVoteModal } from '../../state/application/hooks'
@@ -158,7 +158,7 @@ export default function VotePage({
 
   const bTrustBalance: TokenAmount | undefined = useTokenBalance(
     account ?? undefined,
-    chainId ? BTRUST[chainId] : undefined
+    chainId ? BTrust[chainId] : undefined
   )
   const userDelegatee: string | undefined = useUserDelegatee()
 

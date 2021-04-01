@@ -10,18 +10,11 @@ import { ButtonPrimary } from '../../components/Button'
 import { Button } from 'rebass/styled-components'
 import { darken } from 'polished'
 import { CardSection, DataCard, CardNoise } from '../../components/earn/styled'
-import {
-  useAllProposalData,
-  ProposalData,
-  useUserVotes,
-  useUserDelegatee,
-  useProposalCountByState,
-  enumerateProposalState
-} from '../../state/governance/hooks'
+import { useAllProposalData, ProposalData, useUserVotes, useUserDelegatee } from '../../state/governance/hooks'
 import DelegateModal from '../../components/vote/DelegateModal'
 import { useTokenBalance } from '../../state/wallet/hooks'
 import { useActiveWeb3React } from '../../hooks'
-import { BTRUST, ZERO_ADDRESS } from '../../constants'
+import { BTrust, ZERO_ADDRESS } from '../../constants'
 import { JSBI, TokenAmount, ChainId } from '@uniswap/sdk'
 import { shortenAddress, getEtherscanLink } from '../../utils'
 import Loader from '../../components/Loader'
@@ -124,7 +117,7 @@ export default function Vote() {
   const availableVotes: TokenAmount | undefined = useUserVotes()
   const bTrustBalance: TokenAmount | undefined = useTokenBalance(
     account ?? undefined,
-    chainId ? BTRUST[chainId] : undefined
+    chainId ? BTrust[chainId] : undefined
   )
   const userDelegatee: string | undefined = useUserDelegatee()
 
@@ -132,9 +125,6 @@ export default function Vote() {
   const showUnlockVoting = Boolean(
     bTrustBalance && JSBI.notEqual(bTrustBalance.raw, JSBI.BigInt(0)) && userDelegatee === ZERO_ADDRESS
   )
-
-  // get totals for proposals in each state
-  const counts = useProposalCountByState()
 
   return (
     <PageWrapper gap="lg" justify="center">
@@ -186,7 +176,7 @@ export default function Vote() {
             </ButtonPrimary>
           ) : availableVotes && JSBI.notEqual(JSBI.BigInt(0), availableVotes?.raw) ? (
             <TYPE.body fontWeight={500} mr="6px">
-              <FormattedCurrencyAmount currencyAmount={availableVotes} /> Votes
+              <FormattedCurrencyAmount currencyAmount={availableVotes} /> Current Votes
             </TYPE.body>
           ) : bTrustBalance &&
             userDelegatee &&
@@ -224,17 +214,6 @@ export default function Vote() {
             )}
           </RowBetween>
         )}
-        <CardSection>
-          <RowBetween>
-            {counts.map((count: number, i) => {
-              return (
-                <ProposalStatus style={{ fontSize: '9px' }} key={i} status={enumerateProposalState(i)}>
-                  {enumerateProposalState(i)}: {count}
-                </ProposalStatus>
-              )
-            })}
-          </RowBetween>
-        </CardSection>
         {allProposals?.length === 0 && (
           <EmptyProposals>
             <TYPE.body style={{ marginBottom: '8px' }}>No proposals found.</TYPE.body>

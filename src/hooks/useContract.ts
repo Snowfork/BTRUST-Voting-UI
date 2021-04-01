@@ -10,16 +10,25 @@ import UNISOCKS_ABI from '../constants/abis/unisocks.json'
 import { MULTICALL_ABI, MULTICALL_NETWORKS } from '../constants/multicall'
 import { getContract } from '../utils'
 import { useActiveWeb3React } from './index'
-
 import { Contract } from '@ethersproject/contracts'
-import GOVERNANCE from '../abi/Governance.json'
-import BTRUST from '../abi/BTRUST.json'
 import { ChainId } from '@uniswap/sdk'
 import { useMemo } from 'react'
-import { GOVERNANCE_ADDRESS, BTRUST_ADDRESS } from '../constants'
 
+// get abis and addresses from copied <deployments githb files BTRUST contracts>
+import GOVERNANCE from '../abi/Governance.json'
+import BTRUST from '../abi/BTRUST.json'
+//import TIMELOCK from '../abi/Timelock.json'
+//import GOVERNANCE_DECISIONS from '../abi/GovernanceDecisions.json'
+// deployed ropsten contract ABIs
 const GOVERNANCE_ABI = GOVERNANCE.abi
 const BTRUST_ABI = BTRUST.abi
+//const TIMELOCK_ABI = TIMELOCK.abi
+//const GOVERNANCE_DECISIONS_ABI = GOVERNANCE_DECISIONS.abi
+// deployed ropsten contract addresses
+const GOVERNANCE_ADDRESS = GOVERNANCE.address
+const BTRUST_ADDRESS = BTRUST.address
+//const TIMELOCK_ADDRESS = TIMELOCK.address
+//const GOVERNANCE_DECISIONS_ADDRESS = GOVERNANCE_DECISIONS.address
 
 // returns null on errors
 function useContract(address: string | undefined, ABI: any, withSignerIfPossible = true): Contract | null {

@@ -15,6 +15,8 @@ import Web3Status from '../Web3Status'
 
 import { BTrust } from '../../constants'
 
+import Menu from '../Menu/index'
+
 const HeaderFrame = styled.div`
   display: grid;
   background-color: #ffffff;
@@ -213,6 +215,7 @@ export default function Header() {
             <img width={'96px'} src={Logo} alt="logo" />
           </BTRUSTIcon>
         </StyledNavLink>
+        <Menu />
       </HeaderRow>
       <HeaderControls>
         <HeaderElement>

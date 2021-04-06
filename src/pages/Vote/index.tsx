@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { TYPE, ExternalLink } from '../../theme'
 import { RowBetween, RowFixed } from '../../components/Row'
 import { Link } from 'react-router-dom'
-import { ProposalStatus } from './styled'
+import { ProposalStatus } from '../styled'
 import { ButtonPrimary } from '../../components/Button'
 
 import { Button } from 'rebass/styled-components'

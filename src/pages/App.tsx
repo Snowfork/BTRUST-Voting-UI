@@ -8,6 +8,11 @@ import Web3ReactManager from '../components/Web3ReactManager'
 //import { useModalOpen, useToggleModal } from '../state/application/hooks'
 import Vote from './Vote'
 import VotePage from './Vote/VotePage'
+import AboutPage from './About/AboutPage'
+import BtrustPage from './Btrust/BtrustPage'
+import DocsPage from './Docs/DocsPage'
+import FaqPage from './Faq/FaqPage'
+import ProposePage from './Propose/ProposePage'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -59,6 +64,11 @@ export default function App() {
               <Route exact strict path="/" component={Vote} />
               <Route exact strict path="/vote" component={Vote} />
               <Route exact strict path="/vote/:id" component={VotePage} />
+              <Route exact strict path="/about" component={AboutPage} />
+              <Route exact strict path="/btrust" component={BtrustPage} />
+              <Route exact strict path="/propose" component={ProposePage} />
+              <Route exact strict path="/faq" component={FaqPage} />
+              <Route exact strict path="/docs" component={DocsPage} />
             </Switch>
           </Web3ReactManager>
           <Marginer />

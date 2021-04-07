@@ -4,6 +4,11 @@ import styled from 'styled-components'
 import { TYPE } from '../../theme'
 import ReactMarkdown from 'react-markdown'
 import { DummyInfo } from './DummyInfo'
+//import { calldata } from './proposal_calldata'
+//import { description } from './proposal_description'
+//import { signatures } from './proposal_signatures'
+//import { targets } from './proposal_targets'
+//import { values } from './proposal_values'
 
 const PageWrapper = styled(AutoColumn)`
   width: 100%;

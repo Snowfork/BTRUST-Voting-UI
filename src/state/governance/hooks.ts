@@ -1,4 +1,4 @@
-import { BTrust, PRELOADED_PROPOSALS } from './../../constants/index'
+import { BTRUST, PRELOADED_PROPOSALS } from './../../constants/index'
 import { TokenAmount } from '@uniswap/sdk'
 import { isAddress } from 'ethers/lib/utils'
 import { useGovernanceContract, useBTrustContract } from '../../hooks/useContract'
@@ -176,7 +176,7 @@ export function useUserVotes(): TokenAmount | undefined {
   const bTrustContract = useBTrustContract()
 
   // check for available votes
-  const bTrust = chainId ? BTrust[chainId] : undefined
+  const bTrust = chainId ? BTRUST[chainId] : undefined
   const votes = useSingleCallResult(bTrustContract, 'getCurrentVotes', [account ?? undefined])?.result?.[0]
   return votes && bTrust ? new TokenAmount(bTrust, votes) : undefined
 }
@@ -187,7 +187,7 @@ export function useUserVotesAsOfBlock(block: number | undefined): TokenAmount | 
   const bTrustContract = useBTrustContract()
 
   // check for available votes
-  const bTrust = chainId ? BTrust[chainId] : undefined
+  const bTrust = chainId ? BTRUST[chainId] : undefined
   const votes = useSingleCallResult(bTrustContract, 'getPriorVotes', [account ?? undefined, block ?? undefined])
     ?.result?.[0]
   return votes && bTrust ? new TokenAmount(bTrust, votes) : undefined

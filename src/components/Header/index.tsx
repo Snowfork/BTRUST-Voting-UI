@@ -13,7 +13,7 @@ import { LightGreyCard } from '../Card'
 import { RowFixed } from '../Row'
 import Web3Status from '../Web3Status'
 
-import { BTrust } from '../../constants'
+import { BTRUST } from '../../constants'
 
 import Menu from '../Menu/index'
 
@@ -202,7 +202,7 @@ const NETWORK_LABELS: { [chainId in ChainId]?: string } = {
 
 export default function Header() {
   const { account, chainId } = useActiveWeb3React()
-  const bTrust = chainId ? BTrust[chainId] : undefined
+  const bTrust = chainId ? BTRUST[chainId] : undefined
 
   const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
   const userBTrustBalance = useTokenBalance(account ?? undefined, bTrust)

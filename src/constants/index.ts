@@ -5,12 +5,12 @@ import { fortmatic, injected, portis, walletconnect, walletlink } from '../conne
 
 // get abis and addresses from copied <deployments githb files BTRUST contracts>
 import GOVERNANCE from '../abi/Governance.json'
-import BTRUST from '../abi/BTRUST.json'
+import BTRUSTS from '../abi/BTRUST.json'
 import TIMELOCK from '../abi/Timelock.json'
 import GOVERNANCE_DECISIONS from '../abi/GovernanceDecisions.json'
 // deployed Ropsten Contract Addresses
 export const GOVERNANCE_ADDRESS = GOVERNANCE.address
-export const BTRUST_ADDRESS = BTRUST.address
+export const BTRUST_ADDRESS = BTRUSTS.address
 export const TIMELOCK_ADDRESS = TIMELOCK.address
 export const GOVERNANCE_DECISIONS_ADDRESS = GOVERNANCE_DECISIONS.address
 
@@ -24,7 +24,7 @@ export const AVERAGE_BLOCK_TIME_IN_SECS = 13
 export const PROPOSAL_LENGTH_IN_BLOCKS = 40_320
 export const PROPOSAL_LENGTH_IN_SECS = AVERAGE_BLOCK_TIME_IN_SECS * PROPOSAL_LENGTH_IN_BLOCKS
 
-export const BTrust: { [chainId in ChainId]: Token } = {
+export const BTRUST: { [chainId in ChainId]: Token } = {
   [ChainId.MAINNET]: new Token(ChainId.MAINNET, BTRUST_ADDRESS, 18, 'BTRUST', 'BTRUST'),
   [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, BTRUST_ADDRESS, 18, 'BTRUST', 'BTRUST'),
   [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, BTRUST_ADDRESS, 18, 'BTRUST', 'BTRUST'),

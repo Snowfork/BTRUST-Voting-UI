@@ -13,7 +13,7 @@ import { isAddress } from 'ethers/lib/utils'
 import useENS from '../../hooks/useENS'
 import { useDelegateCallback } from '../../state/governance/hooks'
 import { useTokenBalance } from '../../state/wallet/hooks'
-import { BTrust } from '../../constants'
+import { BTRUST } from '../../constants'
 import { LoadingView, SubmittedView } from '../ModalViews'
 
 const ContentWrapper = styled(AutoColumn)`
@@ -55,7 +55,7 @@ export default function DelegateModal({ isOpen, onDismiss, title }: VoteModalPro
   const { address: parsedAddress } = useENS(activeDelegate)
 
   // get the number of votes available to delegate
-  const bTrustBalance = useTokenBalance(account ?? undefined, chainId ? BTrust[chainId] : undefined)
+  const bTrustBalance = useTokenBalance(account ?? undefined, chainId ? BTRUST[chainId] : undefined)
 
   const delegateCallback = useDelegateCallback()
 

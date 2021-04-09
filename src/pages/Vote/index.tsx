@@ -147,13 +147,6 @@ export default function Vote() {
                   delegate your votes to a third party.
                 </TYPE.white>
               </RowBetween>
-              <ExternalLink
-                style={{ color: 'white', textDecoration: 'underline' }}
-                href="http://wwww.google.com"
-                target="_blank"
-              >
-                <TYPE.white fontSize={14}>Read more about BTRUST governance</TYPE.white>
-              </ExternalLink>
             </AutoColumn>
           </CardSection>
           <CardNoise />
@@ -176,7 +169,7 @@ export default function Vote() {
             </ButtonPrimary>
           ) : availableVotes && JSBI.notEqual(JSBI.BigInt(0), availableVotes?.raw) ? (
             <TYPE.body fontWeight={500} mr="6px">
-              <FormattedCurrencyAmount currencyAmount={availableVotes} /> Current Votes
+              <FormattedCurrencyAmount currencyAmount={availableVotes} /> Votes
             </TYPE.body>
           ) : bTrustBalance &&
             userDelegatee &&

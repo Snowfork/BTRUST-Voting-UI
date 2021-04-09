@@ -1,39 +1,32 @@
 import React from 'react'
 import { AutoColumn } from '../../components/Column'
 import styled from 'styled-components'
-import { TYPE } from '../../theme'
-import ReactMarkdown from 'react-markdown'
-import { DocsInfo } from './DocsInfo'
+//import { TYPE } from '../../theme'
+//import ReactMarkdown from 'react-markdown'
+//import { DocsInfo } from './DocsInfo'
+//import { ArrowLeft } from 'react-feather'
+//import { RowBetween } from '../../components/Row'
+//import { StyledInternalLink } from '../../theme'
+import SideNavBar from './Navigation/SideNavBar'
+import Content from './Content/Content'
 
 const PageWrapper = styled(AutoColumn)`
   width: 100%;
 `
-
-const ProposalInfo = styled(AutoColumn)`
-  border: 1px solid black;
-  border-radius: 12px;
-  padding: 1.5rem;
-  position: relative;
-  max-width: 640px;
-  width: 100%;
+const MainWrapper = styled.main`
+  display: grid;
+  grid-template-columns: 1fr 15em;
+  max-width: 100em;
+  width: 90%;
+  margin: 0 auto;
 `
-
-const MarkDownWrapper = styled.div`
-  max-width: 640px;
-  overflow: hidden;
-`
-
 export default function DocsPage() {
   return (
     <PageWrapper gap="lg" justify="center">
-      <ProposalInfo gap="lg" justify="start">
-        <AutoColumn gap="md">
-          <TYPE.mediumHeader fontWeight={600}>Docs - Governance</TYPE.mediumHeader>
-          <MarkDownWrapper>
-            <ReactMarkdown source={DocsInfo} />
-          </MarkDownWrapper>
-        </AutoColumn>
-      </ProposalInfo>
+      <MainWrapper>
+        <Content />
+        <SideNavBar />
+      </MainWrapper>
     </PageWrapper>
   )
 }

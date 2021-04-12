@@ -1,7 +1,7 @@
 Cast Vote By Signature
 ----------------------
 
-Cast a vote on a proposal. The account's voting weight is determined by the number of votes the account had delegated at the time that proposal state became active. This method has the same purpose as Cast Vote but it instead enables offline signatures to participate in Compound governance voting. For more details on how to create an offline signature, review [EIP-712](https://eips.ethereum.org/EIPS/eip-712).
+Cast a vote on a proposal. The account's voting weight is determined by the number of votes the account had delegated at the time that proposal state became active. This method has the same purpose as Cast Vote but it instead enables offline signatures to participate in Btrust governance voting. For more details on how to create an offline signature, review [EIP-712](https://eips.ethereum.org/EIPS/eip-712).
 
 #### GovernorAlpha
 

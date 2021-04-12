@@ -23,7 +23,9 @@ import { useModalOpen, useToggleDelegateModal } from '../../state/application/ho
 import { ApplicationModal } from '../../state/application/actions'
 //import { unwrapResult } from '@reduxjs/toolkit'
 
-const PageWrapper = styled(AutoColumn)``
+const PageWrapper = styled(AutoColumn)`
+  padding-top: 35px;
+`
 
 const TopSection = styled(AutoColumn)`
   max-width: 640px;

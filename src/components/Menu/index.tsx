@@ -19,7 +19,6 @@ const StyledMenuButton = styled.button`
   width: 100%;
   height: 100%;
   border: none;
-  background-color: transparent;
   margin: 0;
   padding: 0;
   height: 35px;
@@ -31,9 +30,8 @@ const StyledMenuButton = styled.button`
   :hover,
   :focus {
     cursor: pointer;
-    color: white;
     outline: none;
-    background-color: ${({ theme }) => theme.bg3};
+    border: 1px solid #181e47;
   }
 
   svg {
@@ -60,6 +58,13 @@ export default function Menu() {
         <PagesLinksText>
           <NavLink id={`stake-nav-link`} to={'/docs'}>
             Docs
+          </NavLink>
+        </PagesLinksText>
+      </StyledMenuButton>
+      <StyledMenuButton>
+        <PagesLinksText>
+          <NavLink id={`stake-nav-link`} to={'/vote'}>
+            Vote
           </NavLink>
         </PagesLinksText>
       </StyledMenuButton>

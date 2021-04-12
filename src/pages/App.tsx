@@ -4,8 +4,6 @@ import styled from 'styled-components'
 import Header from '../components/Header'
 import Polling from '../components/Header/Polling'
 import Web3ReactManager from '../components/Web3ReactManager'
-//import { ApplicationModal } from '../state/application/actions'
-//import { useModalOpen, useToggleModal } from '../state/application/hooks'
 import Vote from './Vote'
 import VotePage from './Vote/VotePage'
 import DocsPage from './Docs/DocsPage'
@@ -27,7 +25,6 @@ const BodyWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-top: 100px;
   align-items: center;
   flex: 1;
   overflow-y: auto;

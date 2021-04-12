@@ -1,3 +1,6 @@
+Get Prior Votes
+---------------
+
 Gets the prior number of votes for an account at a specific block number. The block number passed must be a finalized block or the function will revert.
 
 #### BTRUST

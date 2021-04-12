@@ -6,49 +6,36 @@ import { ArrowLeft } from 'react-feather'
 import { RowBetween } from '../../../components/Row'
 import { StyledInternalLink } from '../../../theme'
 
-/*
-html {
-    scroll-behavior: smooth;
-}
-*/
-
 const NavWrapper = styled.nav`
-  position: sticky;
-  width: 100%;
-  tip: 2rem;
+  top: 2rem;
   align-self: start;
 `
-
 const SectionNavWrapper = styled.ul`
   padding-left: 0;
   border-left: 2px solid rgba(24, 30, 71, 1);
   list-style-type: none;
   margin: 0;
   padding: 0;
-`
-const NavLinkWrapper = styled.a`
   text-decoration: none;
-  display: block;
-  padding: 0.125rem 0;
-  color: rgba(24, 30, 71, 1);
-  transition: all 50ms ease-in-out;
-  :hover {
-    color: white;
-    background-color: rgba(24, 30, 71, 1);
-  }
-  :focus {
-    color: white;
-    background-color: rgba(24, 30, 71, 1);
-  }
 `
 
 const NavListWrapper = styled.li`
   margin-left: 1rem;
+  transition: all 50ms ease-in-out;
+  :hover {
+    font-weight: 500;
+    background-color: gray;
+  }
+  :focus {
+    font-weight: 500;
+    background-color: gray;
+  }
   :active {
-    color: white;
-    font-weight: 1000;
+    font-weight: 500;
+    background-color: gray;
   }
 `
+
 const ArrowWrapper = styled(StyledInternalLink)`
   display: flex;
   align-items: center;
@@ -78,17 +65,12 @@ export default function SideNavBar() {
         {NavItems.map((item, i) => {
           return (
             <NavListWrapper key={i}>
-              <NavLinkWrapper>
-                <Link to={`docs#section-${i + 1}`}>{item}</Link>
-              </NavLinkWrapper>
+              <Link key={i} to={`docs#section-${i + 1}`}>
+                {item}
+              </Link>
             </NavListWrapper>
           )
         })}
-        <RowBetween style={{ width: '100%' }}>
-          <ArrowWrapper to="/vote">
-            <ArrowLeft size={20} /> Vote Portal
-          </ArrowWrapper>
-        </RowBetween>
       </SectionNavWrapper>
     </NavWrapper>
   )

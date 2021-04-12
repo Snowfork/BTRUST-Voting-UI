@@ -1,7 +1,7 @@
 Delegate
 --------
 
-Delegate votes from the sender to the delegatee. Users can delegate to 1 address at a time, and the number of votes added to the delegatee's vote count is equivalent to the balance of COMP in the user's account. Votes are delegated from the current block and onward, until the sender delegates again, or transfers their BTRUST.
+Delegate votes from the sender to the delegatee. Users can delegate to 1 address at a time, and the number of votes added to the delegatee's vote count is equivalent to the balance of BTRUST in the user's account. Votes are delegated from the current block and onward, until the sender delegates again, or transfers their BTRUST.
 
 #### BTRUST
 

@@ -1,5 +1,5 @@
-Cast Vote
----------
+Cast Vote With Reason
+---------------------
 
 Cast a vote on a proposal with a reason attached to the vote.
 

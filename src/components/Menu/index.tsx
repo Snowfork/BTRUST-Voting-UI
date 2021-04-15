@@ -56,15 +56,46 @@ export default function Menu() {
     <StyledMenu>
       <StyledMenuButton>
         <PagesLinksText>
-          <NavLink id={`stake-nav-link`} to={'/docs'}>
-            Docs
+          <NavLink id={`stake-nav-link`} to={'/about'}>
+            About
           </NavLink>
+        </PagesLinksText>
+      </StyledMenuButton>
+      <StyledMenuButton>
+        <PagesLinksText>
+          <NavLink id={`stake-nav-link`} to={'/how'}>
+            How It Works
+          </NavLink>
+        </PagesLinksText>
+      </StyledMenuButton>
+      <StyledMenuButton>
+        <PagesLinksText>
+          <NavLink id={`stake-nav-link`} to={'/faq'}>
+            FAQs
+          </NavLink>
+        </PagesLinksText>
+      </StyledMenuButton>
+      <StyledMenuButton>
+        <PagesLinksText>
+          <a href={'https://discord.gg/ppGSrXPFGq'}>Chat</a>
+        </PagesLinksText>
+      </StyledMenuButton>
+      <StyledMenuButton>
+        <PagesLinksText>
+        <a href={'https://snapshot.org/#/usebraintrustropsten.eth'}>PreVote</a>
         </PagesLinksText>
       </StyledMenuButton>
       <StyledMenuButton>
         <PagesLinksText>
           <NavLink id={`stake-nav-link`} to={'/vote'}>
             Vote
+          </NavLink>
+        </PagesLinksText>
+      </StyledMenuButton>
+      <StyledMenuButton>
+        <PagesLinksText>
+          <NavLink id={`stake-nav-link`} to={'/docs'}>
+            Docs
           </NavLink>
         </PagesLinksText>
       </StyledMenuButton>

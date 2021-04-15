@@ -54,6 +54,15 @@ const ArrowWrapper = styled(StyledInternalLink)`
 `
 
 export default function SideNavBar() {
+  const NavItemsLinks = NavItems.map((item, i) => {
+    return (
+      <NavListWrapper key={i}>
+        <Link key={i} to={`docs#section-${i + 1}`}>
+          {item}
+        </Link>
+      </NavListWrapper>
+    )
+  })
   return (
     <NavWrapper>
       <SectionNavWrapper>
@@ -62,15 +71,7 @@ export default function SideNavBar() {
             <ArrowLeft size={20} /> Vote Portal
           </ArrowWrapper>
         </RowBetween>
-        {NavItems.map((item, i) => {
-          return (
-            <NavListWrapper key={i}>
-              <Link key={i} to={`docs#section-${i + 1}`}>
-                {item}
-              </Link>
-            </NavListWrapper>
-          )
-        })}
+        {NavItemsLinks}
       </SectionNavWrapper>
     </NavWrapper>
   )

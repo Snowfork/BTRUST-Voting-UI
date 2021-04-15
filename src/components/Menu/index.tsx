@@ -82,7 +82,7 @@ export default function Menu() {
       </StyledMenuButton>
       <StyledMenuButton>
         <PagesLinksText>
-        <a href={'https://snapshot.org/#/usebraintrustropsten.eth'}>PreVote</a>
+          <a href={'https://snapshot.org/#/usebraintrustropsten.eth'}>PreVote</a>
         </PagesLinksText>
       </StyledMenuButton>
       <StyledMenuButton>

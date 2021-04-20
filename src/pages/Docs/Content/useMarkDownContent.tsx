@@ -60,11 +60,18 @@ export function useMarkDownContent() {
   console.log(content)
 
   useEffect(() => {
+    const promises = ContentMarkup.map(markup => fetch(markup).then(res => res.text()))
+    Promise.all(promises).then(results => {
+      setContent(results)
+    })
+    /*
     ContentMarkup.forEach(markup => {
       fetch(markup)
         .then(res => res.text())
         .then(text => setContent(content => [...content, text]))
     })
+    */
   }, [])
+
   return content
 }

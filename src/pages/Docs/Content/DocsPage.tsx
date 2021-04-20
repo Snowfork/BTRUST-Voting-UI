@@ -118,22 +118,24 @@ export default function DocsPage() {
     )
   })
 
+  const Sections = Content.map((markup: any, i: number) => {
+    return (
+      <SectionWrapper ref={sectionRefs[i]} key={i} id={`section-${i + 1}`}>
+        <MarkDownWrapper key={i}>
+          <ReactMarkdown key={i} source={markup} />
+        </MarkDownWrapper>
+        <hr></hr>
+      </SectionWrapper>
+    )
+  })
+
   return (
     <PageWrapper>
       <MainWrapper>
         <DivWrapper>
           <TYPE.largeHeader fontWeight={900}>Docs - Governance</TYPE.largeHeader>
           <hr></hr>
-          {Content.map((markup: any, i: number) => {
-            return (
-              <SectionWrapper ref={sectionRefs[i]} key={i} id={`section-${i + 1}`}>
-                <MarkDownWrapper key={i}>
-                  <ReactMarkdown key={i} source={markup} />
-                </MarkDownWrapper>
-                <hr></hr>
-              </SectionWrapper>
-            )
-          })}
+          {Sections}
         </DivWrapper>
         <NavWrapper>
           <SectionNavWrapper>

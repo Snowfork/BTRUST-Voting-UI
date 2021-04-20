@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import styled from 'styled-components'
 import { TYPE } from '../../../theme'
 import ReactMarkdown from 'react-markdown'
@@ -8,6 +8,7 @@ import { HashLink as Link } from 'react-router-hash-link'
 import { ArrowLeft } from 'react-feather'
 import { RowBetween } from '../../../components/Row'
 import { StyledInternalLink } from '../../../theme'
+import useScrollSpy from 'react-use-scrollspy'
 
 const NavWrapper = styled.nav`
   top: 2rem;
@@ -99,10 +100,18 @@ const MainWrapper = styled.main`
 
 export default function DocsPage() {
   const Content: any = useMarkDownContent()
+
+  const sectionRefs = Array(Content.length).fill(useRef(null))
+
+  const activeSection = useScrollSpy({
+    sectionElementRefs: sectionRefs,
+    offsetPx: -80
+  })
+
   const Navs = NavItems.map((item, i) => {
     return (
       <NavListWrapper key={i}>
-        <Link key={i} to={`docs#section-${i + 1}`} href={`docs#section-${i + 1}`}>
+        <Link className={activeSection === i ? "active" : ""} key={i} to={`docs#section-${i + 1}`} href={`docs#section-${i + 1}`}>
           {item}
         </Link>
       </NavListWrapper>
@@ -117,7 +126,7 @@ export default function DocsPage() {
           <hr></hr>
           {Content.map((markup: any, i: number) => {
             return (
-              <SectionWrapper key={i} id={`section-${i + 1}`}>
+              <SectionWrapper ref={sectionRefs[i]} key={i} id={`section-${i + 1}`}>
                 <MarkDownWrapper key={i}>
                   <ReactMarkdown key={i} source={markup} />
                 </MarkDownWrapper>

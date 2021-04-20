@@ -6,6 +6,7 @@ import { ArrowLeft } from 'react-feather'
 import { RowBetween } from '../../../components/Row'
 import { StyledInternalLink } from '../../../theme'
 
+
 const NavWrapper = styled.nav`
   top: 2rem;
   align-self: start;

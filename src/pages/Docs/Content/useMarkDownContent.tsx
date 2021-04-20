@@ -57,6 +57,8 @@ export function useMarkDownContent() {
   const defaultState: string[] = []
   const [content, setContent] = useState(defaultState)
 
+  console.log(content)
+
   useEffect(() => {
     ContentMarkup.forEach(markup => {
       fetch(markup)

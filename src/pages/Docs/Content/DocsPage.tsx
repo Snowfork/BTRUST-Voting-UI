@@ -111,7 +111,12 @@ export default function DocsPage() {
   const Navs = NavItems.map((item, i) => {
     return (
       <NavListWrapper key={i}>
-        <Link className={activeSection === i ? "active" : ""} key={i} to={`docs#section-${i + 1}`} href={`docs#section-${i + 1}`}>
+        <Link
+          className={activeSection === i ? 'active' : ''}
+          key={i}
+          to={`docs#section-${i + 1}`}
+          href={`docs#section-${i + 1}`}
+        >
           {item}
         </Link>
       </NavListWrapper>

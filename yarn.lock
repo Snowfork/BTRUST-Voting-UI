@@ -10317,11 +10317,6 @@
   "resolved" "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
   "version" "4.17.21"
 
-"lodash@4.17.20":
-  "integrity" "sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA=="
-  "resolved" "https://registry.npmjs.org/lodash/-/lodash-4.17.20.tgz"
-  "version" "4.17.20"
-
 "log-symbols@^1.0.2":
   "integrity" "sha1-N2/3tY6jCGoPCfrMdGF+ylAeGhg="
   "resolved" "https://registry.npmjs.org/log-symbols/-/log-symbols-1.0.2.tgz"
@@ -13105,14 +13100,7 @@
   "resolved" "https://registry.npmjs.org/react-use-gesture/-/react-use-gesture-6.0.14.tgz"
   "version" "6.0.14"
 
-"react-use-scrollspy@^3.0.0":
-  "integrity" "sha512-db/bhhQ5NvtXSbN5T2MvDEYeHo8AfMLEsHCaOoJhmpOy63dVmgEYGEc6TU/I+Rvwxgtgo7Y8fM1YbGD9wtt+Pw=="
-  "resolved" "https://registry.npmjs.org/react-use-scrollspy/-/react-use-scrollspy-3.0.0.tgz"
-  "version" "3.0.0"
-  dependencies:
-    "lodash" "4.17.20"
-
-"react@^0.14.0 || ^15.0.0 || ^16.0.0", "react@^15.0.0 || ^16.0.0", "react@^15.3.0 || ^16.0.0", "react@^15.6.2 || ^16.0", "react@^16.0", "react@^16.13.1", "react@^16.8.0", "react@^16.8.3", "react@^16.8.6", "react@^16.8.6 || 17", "react@>= 16.3.0", "react@>= 16.8.0", "react@>=15", "react@>=16.3.0", "react@>=16.8":
+"react@^0.14.0 || ^15.0.0 || ^16.0.0", "react@^15.0.0 || ^16.0.0", "react@^15.3.0 || ^16.0.0", "react@^15.6.2 || ^16.0", "react@^16.0", "react@^16.13.1", "react@^16.8.0", "react@^16.8.3", "react@^16.8.6", "react@>= 16.3.0", "react@>= 16.8.0", "react@>=15", "react@>=16.3.0", "react@>=16.8":
   "integrity" "sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g=="
   "resolved" "https://registry.npmjs.org/react/-/react-16.14.0.tgz"
   "version" "16.14.0"

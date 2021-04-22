@@ -109,7 +109,6 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@types/react-router-hash-link": "^1.2.1",
-    "react-router-hash-link": "^2.4.0",
-    "react-use-scrollspy": "^3.0.0"
+    "react-router-hash-link": "^2.4.0"
   }
 }

@@ -73,7 +73,6 @@ export function useDataFromEventLogs() {
             details: eventParsed.targets.map((target: string, i: number) => {
               const signature = eventParsed.signatures[i]
               const [name, types] = signature.substr(0, signature.length - 1).split('(')
-
               const calldata = eventParsed.calldatas[i]
               const decoded = utils.defaultAbiCoder.decode(types.split(','), calldata)
 

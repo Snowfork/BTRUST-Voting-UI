@@ -4,20 +4,13 @@ import styled from 'styled-components'
 import { TYPE, ExternalLink } from '../../theme'
 import { RowBetween, RowFixed } from '../../components/Row'
 import { Link } from 'react-router-dom'
-import { ProposalStatus } from './styled'
+import { ProposalStatus } from '../styled'
 import { ButtonPrimary } from '../../components/Button'
 
 import { Button } from 'rebass/styled-components'
 import { darken } from 'polished'
 import { CardSection, DataCard, CardNoise } from '../../components/earn/styled'
-import {
-  useAllProposalData,
-  ProposalData,
-  useUserVotes,
-  useUserDelegatee,
-  useProposalCountByState,
-  enumerateProposalState
-} from '../../state/governance/hooks'
+import { useAllProposalData, ProposalData, useUserVotes, useUserDelegatee } from '../../state/governance/hooks'
 import DelegateModal from '../../components/vote/DelegateModal'
 import { useTokenBalance } from '../../state/wallet/hooks'
 import { useActiveWeb3React } from '../../hooks'
@@ -30,7 +23,9 @@ import { useModalOpen, useToggleDelegateModal } from '../../state/application/ho
 import { ApplicationModal } from '../../state/application/actions'
 //import { unwrapResult } from '@reduxjs/toolkit'
 
-const PageWrapper = styled(AutoColumn)``
+const PageWrapper = styled(AutoColumn)`
+  padding-top: 35px;
+`
 
 const TopSection = styled(AutoColumn)`
   max-width: 640px;
@@ -133,9 +128,6 @@ export default function Vote() {
     bTrustBalance && JSBI.notEqual(bTrustBalance.raw, JSBI.BigInt(0)) && userDelegatee === ZERO_ADDRESS
   )
 
-  // get totals for proposals in each state
-  const counts = useProposalCountByState()
-
   return (
     <PageWrapper gap="lg" justify="center">
       <DelegateModal
@@ -157,13 +149,6 @@ export default function Vote() {
                   delegate your votes to a third party.
                 </TYPE.white>
               </RowBetween>
-              <ExternalLink
-                style={{ color: 'white', textDecoration: 'underline' }}
-                href="http://wwww.google.com"
-                target="_blank"
-              >
-                <TYPE.white fontSize={14}>Read more about BTRUST governance</TYPE.white>
-              </ExternalLink>
             </AutoColumn>
           </CardSection>
           <CardNoise />
@@ -224,17 +209,6 @@ export default function Vote() {
             )}
           </RowBetween>
         )}
-        <CardSection>
-          <RowBetween>
-            {counts.map((count: number, i) => {
-              return (
-                <ProposalStatus style={{ fontSize: '9px' }} key={i} status={enumerateProposalState(i)}>
-                  {enumerateProposalState(i)}: {count}
-                </ProposalStatus>
-              )
-            })}
-          </RowBetween>
-        </CardSection>
         {allProposals?.length === 0 && (
           <EmptyProposals>
             <TYPE.body style={{ marginBottom: '8px' }}>No proposals found.</TYPE.body>

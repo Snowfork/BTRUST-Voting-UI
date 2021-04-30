@@ -4,10 +4,9 @@ import styled from 'styled-components'
 import Header from '../components/Header'
 import Polling from '../components/Header/Polling'
 import Web3ReactManager from '../components/Web3ReactManager'
-//import { ApplicationModal } from '../state/application/actions'
-//import { useModalOpen, useToggleModal } from '../state/application/hooks'
 import Vote from './Vote'
 import VotePage from './Vote/VotePage'
+import DocsPage from './Docs/Content/DocsPage'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -26,7 +25,6 @@ const BodyWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-top: 100px;
   align-items: center;
   flex: 1;
   overflow-y: auto;
@@ -59,6 +57,7 @@ export default function App() {
               <Route exact strict path="/" component={Vote} />
               <Route exact strict path="/vote" component={Vote} />
               <Route exact strict path="/vote/:id" component={VotePage} />
+              <Route exact strict path="/docs" component={DocsPage} />
             </Switch>
           </Web3ReactManager>
           <Marginer />

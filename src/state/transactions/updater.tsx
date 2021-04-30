@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useActiveWeb3React } from '../../hooks'
-import { useAddPopup, useBlockNumber } from '../application/hooks'
+import { useBlockNumber } from '../application/hooks' //useAddPopup
 import { AppDispatch, AppState } from '../index'
 import { checkedTransaction, finalizeTransaction } from './actions'
 
@@ -37,7 +37,7 @@ export default function Updater(): null {
   const transactions = chainId ? state[chainId] ?? {} : {}
 
   // show popup on confirm
-  const addPopup = useAddPopup()
+  // const addPopup = useAddPopup()
 
   useEffect(() => {
     if (!chainId || !library || !lastBlockNumber) return
@@ -65,7 +65,7 @@ export default function Updater(): null {
                   }
                 })
               )
-
+              /*
               addPopup(
                 {
                   txn: {
@@ -76,6 +76,7 @@ export default function Updater(): null {
                 },
                 hash
               )
+              */
             } else {
               dispatch(checkedTransaction({ chainId, hash, blockNumber: lastBlockNumber }))
             }
@@ -84,7 +85,7 @@ export default function Updater(): null {
             console.error(`failed to check transaction hash: ${hash}`, error)
           })
       })
-  }, [chainId, library, transactions, lastBlockNumber, dispatch, addPopup])
+  }, [chainId, library, transactions, lastBlockNumber, dispatch])
 
   return null
 }

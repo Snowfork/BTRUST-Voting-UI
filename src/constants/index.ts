@@ -3,6 +3,17 @@ import { AbstractConnector } from '@web3-react/abstract-connector'
 
 import { fortmatic, injected, portis, walletconnect, walletlink } from '../connectors'
 
+// get abis and addresses from copied <deployments githb files BTRUST contracts>
+import GOVERNANCE from '../abi/Governance.json'
+import BTRUSTS from '../abi/BTRUST.json'
+import TIMELOCK from '../abi/Timelock.json'
+import GOVERNANCE_DECISIONS from '../abi/GovernanceDecisions.json'
+// deployed Ropsten Contract Addresses
+export const GOVERNANCE_ADDRESS = GOVERNANCE.address
+export const BTRUST_ADDRESS = BTRUSTS.address
+export const TIMELOCK_ADDRESS = TIMELOCK.address
+export const GOVERNANCE_DECISIONS_ADDRESS = GOVERNANCE_DECISIONS.address
+
 //export const ROUTER_ADDRESS = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D'
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
@@ -13,11 +24,6 @@ export const AVERAGE_BLOCK_TIME_IN_SECS = 13
 export const PROPOSAL_LENGTH_IN_BLOCKS = 40_320
 export const PROPOSAL_LENGTH_IN_SECS = AVERAGE_BLOCK_TIME_IN_SECS * PROPOSAL_LENGTH_IN_BLOCKS
 
-// Contract Addresses
-export const GOVERNANCE_ADDRESS = '0x0D2Bd7D338822EAcf7cC6E9b551cD4d4b71C10FF'
-export const TIMELOCK_ADDRESS = '0xC818cF9FB148bcB9C71FaBC082d1bE6e90276CB3'
-export const BTRUST_ADDRESS = '0x029578A01D6f6dBD6602320fEBdf83d060edAe37'
-
 export const BTRUST: { [chainId in ChainId]: Token } = {
   [ChainId.MAINNET]: new Token(ChainId.MAINNET, BTRUST_ADDRESS, 18, 'BTRUST', 'BTRUST'),
   [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, BTRUST_ADDRESS, 18, 'BTRUST', 'BTRUST'),
@@ -27,9 +33,10 @@ export const BTRUST: { [chainId in ChainId]: Token } = {
 }
 
 export const COMMON_CONTRACT_NAMES: { [address: string]: string } = {
-  [BTRUST_ADDRESS]: 'UNI',
+  [BTRUST_ADDRESS]: 'BTRUST',
   [GOVERNANCE_ADDRESS]: 'Governance',
-  [TIMELOCK_ADDRESS]: 'Timelock'
+  [TIMELOCK_ADDRESS]: 'Timelock',
+  [GOVERNANCE_DECISIONS_ADDRESS]: 'GovernanceDecisions'
 }
 
 // TODO: specify merkle distributor for mainnet
@@ -115,8 +122,6 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
 
 export const NetworkContextName = 'NETWORK'
 
-// default allowed slippage, in bips
-export const INITIAL_ALLOWED_SLIPPAGE = 50
 // 20 minutes, denominated in seconds
 export const DEFAULT_DEADLINE_FROM_NOW = 60 * 20
 
@@ -128,27 +133,6 @@ export const BIG_INT_ZERO = JSBI.BigInt(0)
 // one basis point
 export const ONE_BIPS = new Percent(JSBI.BigInt(1), JSBI.BigInt(10000))
 export const BIPS_BASE = JSBI.BigInt(10000)
-// used for warning states
-export const ALLOWED_PRICE_IMPACT_LOW: Percent = new Percent(JSBI.BigInt(100), BIPS_BASE) // 1%
-export const ALLOWED_PRICE_IMPACT_MEDIUM: Percent = new Percent(JSBI.BigInt(300), BIPS_BASE) // 3%
-export const ALLOWED_PRICE_IMPACT_HIGH: Percent = new Percent(JSBI.BigInt(500), BIPS_BASE) // 5%
-// if the price slippage exceeds this number, force the user to type 'confirm' to execute
-export const PRICE_IMPACT_WITHOUT_FEE_CONFIRM_MIN: Percent = new Percent(JSBI.BigInt(1000), BIPS_BASE) // 10%
-// for non expert mode disable swaps above this
-export const BLOCKED_PRICE_IMPACT_NON_EXPERT: Percent = new Percent(JSBI.BigInt(1500), BIPS_BASE) // 15%
-
-// used to ensure the user doesn't send so much ETH so they end up with <.01
-export const MIN_ETH: JSBI = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(16)) // .01 ETH
-export const BETTER_TRADE_LESS_HOPS_THRESHOLD = new Percent(JSBI.BigInt(50), JSBI.BigInt(10000))
 
 export const ZERO_PERCENT = new Percent('0')
 export const ONE_HUNDRED_PERCENT = new Percent('1')
-
-// SDN OFAC addresses
-export const BLOCKED_ADDRESSES: string[] = [
-  '0x7F367cC41522cE07553e823bf3be79A889DEbe1B',
-  '0xd882cFc20F52f2599D84b8e8D58C7FB62cfE344b',
-  '0x901bb9583b24D97e995513C6778dc6888AB6870e',
-  '0xA7e5d5A720f06526557c513402f2e6B5fA20b008',
-  '0x8576aCC5C05D6Ce88f4e49bf65BdF0C62F91353C'
-]

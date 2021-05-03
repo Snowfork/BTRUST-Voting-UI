@@ -100,6 +100,10 @@ export default function DelegateModal({ isOpen, onDismiss, title }: VoteModalPro
             <TYPE.body>
               You can either vote on each proposal yourself or delegate your votes to a third party.
             </TYPE.body>
+            <TYPE.body>
+              Note that you would need to have ETH tokens in your wallet to pay for gas costs for this
+              delegation/self-delegation transaction.
+            </TYPE.body>
             {usingDelegate && <AddressInputPanel value={typed} onChange={handleRecipientType} />}
             <ButtonPrimary disabled={!isAddress(parsedAddress ?? '')} onClick={onDelegate}>
               <TYPE.mediumHeader color="white">{usingDelegate ? 'Delegate Votes' : 'Self Delegate'}</TYPE.mediumHeader>

@@ -1,4 +1,5 @@
-# BTRUST Governance Interface
+# BTRUST-Voting-UI
+This repo contains frontend UI for a web interface to the BTRUST Governance Contracts. The contract code and guides/scripts for creating and cancelling proposals is [here](https://github.com/Snowfork/BTRUST-Contracts).
 
 ## Development
 
@@ -26,6 +27,4 @@ Note that the interface currently only works where BTRUST and BTRUST Governane c
 
 ## Contributions
 
-**Please open all pull requests against the `staging` branch.** 
-
-# BTRUST-Voting-UI
+**Please open all pull requests against the `staging` branch.**
